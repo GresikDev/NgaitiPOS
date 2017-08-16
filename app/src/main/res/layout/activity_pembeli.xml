@@ -19,12 +19,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:itemTextColor="#000"
-        app:paddingStart="5dp"
-        app:paddingEnd="5dp"
-        app:itemIconTint="@color/colorAccent"
-        app:elevation="@dimen/cardview_default_elevation"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_pembeli_drawer" />
 
 </android.support.v4.widget.DrawerLayout>
