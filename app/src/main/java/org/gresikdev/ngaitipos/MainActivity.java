@@ -1,9 +1,17 @@
 package org.gresikdev.ngaitipos;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,23 +21,45 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, FragmentOne.OnFragmentInteractionListener,
+        FragmentTwo.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        SharedPreferences sharedPreferences = getSharedPreferences("NgaitiPOS", 0);
+        if (sharedPreferences.getInt("firstview", 0) == 1) {
+            setContentView(R.layout.activity_main);
+        } else {
+            setContentView(R.layout.activity_pembeli);
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        if (savedInstanceState == null) {
+            Fragment fragment = null;
+            Class fragmentClass = null;
+            fragmentClass = FragmentOne.class;
+            try {
+                fragment = (Fragment) fragmentClass.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                startActivity(new Intent(MainActivity.this, BerandaActivity.class));
             }
         });
 
@@ -41,6 +71,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //navigationView.getMenu().findItem(R.id.nav_transaksi).getTitle().toString();
+        navigationView.setCheckedItem(R.id.nav_home);
     }
 
     @Override
@@ -49,7 +81,7 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            drawer.openDrawer(GravityCompat.START);
         }
     }
 
@@ -81,23 +113,62 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-            startActivity(new Intent(this, BerandaActivity.class));
-        } else if (id == R.id.nav_gallery) {
+//        if (id == R.id.nav_transaksi) {
+//            // Handle the camera action
+//            //startActivity(new Intent(this, BerandaActivity.class));
+//        }
 
-        } else if (id == R.id.nav_slideshow) {
+        Fragment fragment = null;
+        Class fragmentClass = null;
 
-        } else if (id == R.id.nav_manage) {
+        switch (id){
+            case R.id.nav_bantuan:
+                SharedPreferences sharedPreferences = getSharedPreferences("NgaitiPOS", 0);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("firstview", 0);
+                editor.commit();
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+                startActivity(new Intent(this, ChooseActivity.class));
+                finish();
+                break;
+            case R.id.nav_home:
+                fragmentClass = FragmentOne.class;
+                gantiFragment(fragment, fragmentClass);
+                break;
+            case R.id.nav_stok:
+                fragmentClass = FragmentTwo.class;
+                gantiFragment(fragment, fragmentClass);
+                break;
+            case R.id.nav_pengaturan:
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                break;
+            case R.id.nav_exit:
+                finish();
+                break;
+            default:
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void gantiFragment(Fragment fragment, Class fragmentClass){
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

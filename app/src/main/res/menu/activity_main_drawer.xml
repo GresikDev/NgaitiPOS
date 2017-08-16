@@ -1,36 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group android:id="@+id/baris1" android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_penjualan"
+            android:title="Penjualan" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_stok"
+            android:icon="@drawable/ic_stok"
+            android:title="Stok" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+    <group android:id="@+id/baris2" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_produk"
+            android:icon="@drawable/ic_produk"
+            android:title="Produk" />
+        <item
+            android:id="@+id/nav_tag"
+            android:icon="@drawable/ic_tag"
+            android:title="Tag" />
+    </group>
+
+    <group android:id="@+id/baris3" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_report"
+            android:icon="@drawable/ic_report"
+            android:title="Report" />
+        <item
+            android:id="@+id/nav_pencarian"
+            android:icon="@drawable/ic_cari"
+            android:title="Pencarian" />
+        <item
+            android:id="@+id/nav_pesan"
+            android:icon="@drawable/ic_pesan"
+            android:title="Pesan" />
+    </group>
+
+    <group android:id="@+id/baris4" android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_pengaturan"
+            android:icon="@drawable/ic_pengaturan"
+            android:title="Pengaturan" />
+        <item
+            android:id="@+id/nav_bantuan"
+            android:icon="@drawable/ic_bantuan"
+            android:title="Bantuan" />
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/ic_keluar"
+            android:title="Exit" />
+    </group>
+
+    <!--<item android:title="Other">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_pengaturan"-->
+                <!--android:icon="@drawable/ic_menu_share"-->
+                <!--android:title="Pengaturan" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_bantuan"-->
+                <!--android:icon="@drawable/ic_menu_send"-->
+                <!--android:title="Bantuan" />-->
+        <!--</menu>-->
+    <!--</item>-->
 
 </menu>

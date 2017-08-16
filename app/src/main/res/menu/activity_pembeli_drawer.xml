@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/baris1" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_cari"
+            android:title="Pencarian" />
+        <item
+            android:id="@+id/nav_pesan"
+            android:icon="@drawable/ic_pesan"
+            android:title="Pesan" />
+    </group>
+
+    <group android:id="@+id/baris2" android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_pengaturan"
+            android:icon="@drawable/ic_pengaturan2"
+            android:title="Pengaturan" />
+        <item
+            android:id="@+id/nav_bantuan"
+            android:icon="@drawable/ic_bantuan"
+            android:title="Bantuan" />
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/ic_keluar"
+            android:title="Exit" />
+    </group>
+
+</menu>
