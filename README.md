@@ -8,3 +8,4 @@ NgaitiPOS adalah Sistem POS dan marketplace berbasis mobile yang sasarannya adal
 Untuk mewujudkan produk ini, kami membuka kesempatan pada kawan-kawan untuk turut berkontribusi. Silakan isi form https://goo.gl/forms/X97sfvX8pNzdTVEH3 . Selanjutnya akan kami kontak kapan kita akan kopdar untuk pembahasan lebih lanjut.
 
 Selamat bergabung :)
+Selamat jalan :v
